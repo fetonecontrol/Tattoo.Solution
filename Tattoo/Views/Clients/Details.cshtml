@@ -9,5 +9,25 @@
 <h3>Name: @Html.DisplayFor(model => model.FirstName) @Html.DisplayFor(model => model.LastName)</h3>
 <h3>Services: @Html.DisplayFor(model => model.Services)</h3>
 
-<input type="button" class="btn btn-outline-info" value="Edit This Appointment!" onclick="location.href='@Url.Action("Edit", new { id = Model.Id })'" />
-<input type="button" class="btn btn-outline-info" value="Delete This Appointment!" onclick="location.href='@Url.Action("Delete", new { id = Model.Id })'" />
+@if(@Model.Artists.Count == 0)
+{
+  <p>This client does not have any appointments booked with any of our artists</p>
+}
+else
+{
+  <h4>Artists that this client has schdeduled with:</h4>
+  <ul>
+  @foreach(var join in Model.Artists)
+  {
+    <li>@join.Artist.FirstName</li>
+    @using (Html.BeginForm("DeleteArtist", "Clients"))
+    {
+      @Html.Hidden("joinId", @join.ArtistClientId)
+      <input type= "submit", value="Delete" />
+    }
+  }
+  </ul>
+}
+
+<input type="button" class="btn btn-outline-info" value="Edit This Appointment!" onclick="location.href='@Url.Action("Edit", new { id = Model.ClientId })'" />
+<input type="button" class="btn btn-outline-info" value="Delete This Appointment!" onclick="location.href='@Url.Action("Delete", new { id = Model.ClientId })'" />

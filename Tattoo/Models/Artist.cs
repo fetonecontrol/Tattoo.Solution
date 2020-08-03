@@ -3,10 +3,10 @@ using System.Collections.Generic;
 namespace Tattoo.Models
 {
   public class Artist
-    {
+  {
     public Artist()
     {
-        this.Clients = new HashSet<ArtistClient>();
+      this.Clients = new HashSet<ArtistClient>();
     }
 
     public int ArtistId { get; set; }

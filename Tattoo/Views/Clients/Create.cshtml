@@ -12,7 +12,7 @@
     <p>Last Name: @Html.TextBoxFor(model => model.LastName)</p>
     <p>Services: @Html.TextBoxFor(model => model.Services)</p>
 
-    <p>Who would you like to book with? @Html.DropDownList("ArtistId")</p>
+    <p>@Html.Label("Select Artist") @Html.DropDownList("ArtistId")</p>
     <input type="submit" value="Book Appointment" class="btn btn-outline-info"/>
 }
 </div>

@@ -10,12 +10,12 @@
 
 @using (Html.BeginForm())
 {
-  @Html.HiddenFor(model => model.Id)
+  @Html.HiddenFor(model => model.ClientId)
 
   @Html.LabelFor(model => model.FirstName)
   @Html.EditorFor(model => model.FirstName)
 
-  @Html.LabelFor(model => model.ArtistId)
+  @Html.Label("Select Artist")
   @Html.DropDownList("ArtistId")
 
   <input type="submit" value="Save" />

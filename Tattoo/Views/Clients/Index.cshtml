@@ -15,6 +15,6 @@
 
 @foreach (Client client in Model)
 {
-  <li>@Html.ActionLink($"{client.FirstName}", "Details", new { id = client.Id }) | Artist for this client:<b> @client.Artist.FirstName</b></li>
+  <li>@Html.ActionLink($"{client.FirstName}", "Details", new { id = client.ClientId }) </li>
 }
 <input type="button" class="btn btn-outline-info" value="Book an Appointment!" onclick="location.href='@Url.Action("Create", "Clients")'" />

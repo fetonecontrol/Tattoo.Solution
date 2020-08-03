@@ -1,0 +1,32 @@
+@{
+  Layout = "_Layout";
+}
+
+@using Tattoo.Models
+@model Tattoo.Models.Artist;
+
+
+<h2>Clients currently booked with</h2>
+<h3>@Html.DisplayFor(model => model.FirstName) @Html.DisplayFor(model => model.LastName):</h3>
+<hr />
+
+<ul>
+@if (@Model.Clients.Count == 0)
+{
+  <p>This Artist has no current bookings</p>
+}
+else
+{
+  <h4>Clients that this Artist has booked:</h4>
+  <ul>
+  @foreach(var join in Model.Clients)
+  {
+    <li>@join.Client.FirstName</li>
+  }
+  </ul>
+}
+</ul>
+<input type="button" class="btn btn-outline-info" value="Book with This Artist" onclick="location.href='@Url.Action("Create", "Clients")'" />
+<input type="button" class="btn btn-outline-info" value="Edit This Profile" onclick="location.href='@Url.Action("Edit", "Artists", new {id = Model.ArtistId })'" />
+<input type="button" class="btn btn-outline-info" value="Delete This Profile" onclick="location.href='@Url.Action("Delete", "Artists", new {id = Model.ArtistId })'" />
+

@@ -2961,6 +2961,11 @@
   "RootNamespace": "Tattoo",
   "Documents": [
     {
+      "FilePath": "/Users/frederickernest/Desktop/Tattoo.Solution/Tattoo/Views/Clients/AddArtist.cshtml",
+      "TargetPath": "Views\\Clients\\AddArtist.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/Users/frederickernest/Desktop/Tattoo.Solution/Tattoo/Views/Clients/Delete.cshtml",
       "TargetPath": "Views\\Clients\\Delete.cshtml",
       "FileKind": "mvc"
@@ -2976,13 +2981,18 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "/Users/frederickernest/Desktop/Tattoo.Solution/Tattoo/Views/Clients/Create.cshtml",
-      "TargetPath": "Views\\Clients\\Create.cshtml",
+      "FilePath": "/Users/frederickernest/Desktop/Tattoo.Solution/Tattoo/Views/Artists/Index.cshtml",
+      "TargetPath": "Views\\Artists\\Index.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "/Users/frederickernest/Desktop/Tattoo.Solution/Tattoo/Views/Artists/Edit.cshtml",
-      "TargetPath": "Views\\Artists\\Edit.cshtml",
+      "FilePath": "/Users/frederickernest/Desktop/Tattoo.Solution/Tattoo/Views/Artists/Create.cshtml",
+      "TargetPath": "Views\\Artists\\Create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/frederickernest/Desktop/Tattoo.Solution/Tattoo/Views/Clients/Create.cshtml",
+      "TargetPath": "Views\\Clients\\Create.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -2991,13 +3001,8 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "/Users/frederickernest/Desktop/Tattoo.Solution/Tattoo/Views/Artists/Delete.cshtml",
-      "TargetPath": "Views\\Artists\\Delete.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/Users/frederickernest/Desktop/Tattoo.Solution/Tattoo/Views/Artists/Create.cshtml",
-      "TargetPath": "Views\\Artists\\Create.cshtml",
+      "FilePath": "/Users/frederickernest/Desktop/Tattoo.Solution/Tattoo/Views/Artists/Details.cshtml",
+      "TargetPath": "Views\\Artists\\Details.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -3011,13 +3016,13 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "/Users/frederickernest/Desktop/Tattoo.Solution/Tattoo/Views/Artists/Details.cshtml",
-      "TargetPath": "Views\\Artists\\Details.cshtml",
+      "FilePath": "/Users/frederickernest/Desktop/Tattoo.Solution/Tattoo/Views/Artists/Edit.cshtml",
+      "TargetPath": "Views\\Artists\\Edit.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "/Users/frederickernest/Desktop/Tattoo.Solution/Tattoo/Views/Artists/Index.cshtml",
-      "TargetPath": "Views\\Artists\\Index.cshtml",
+      "FilePath": "/Users/frederickernest/Desktop/Tattoo.Solution/Tattoo/Views/Artists/Delete.cshtml",
+      "TargetPath": "Views\\Artists\\Delete.cshtml",
       "FileKind": "mvc"
     },
     {

@@ -18,8 +18,7 @@ namespace Tattoo.Controllers
 
     public ActionResult Index()
     {
-      List<Client> model = _db.Clients.Include(clients => clients.Artist).ToList();
-      return View(model);
+      return View(_db.Clients.ToList());
     }
 
     public ActionResult Create()
@@ -29,29 +28,40 @@ namespace Tattoo.Controllers
     }
 
     [HttpPost]
-    public ActionResult Create(Client client)
+    public ActionResult Create(Client client, int ArtistId)
     {
       _db.Clients.Add(client);
+      if (ArtistId != 0)
+      {
+        _db.ArtistClient.Add(new ArtistClient() { ArtistId = ArtistId, ClientId = client.ClientId });
+      }
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
 
     public ActionResult Details(int id)
     {
-      Client thisClient = _db.Clients.FirstOrDefault(clients => clients.Id == id);
+      var thisClient = _db.Clients
+        .Include(client => client.Artists)
+        .ThenInclude(join => join.Artist)
+        .FirstOrDefault(client => client.ClientId == id);
       return View(thisClient);
     }
 
     public ActionResult Edit(int id)
     {
-      var thisClient = _db.Clients.FirstOrDefault(clients => clients.Id == id);
+      var thisClient = _db.Clients.FirstOrDefault(clients => clients.ClientId == id);
       ViewBag.ArtistId = new SelectList(_db.Artists, "ArtistId", "FirstName");
       return View(thisClient);
     }
 
     [HttpPost]
-    public ActionResult Edit(Client client)
+    public ActionResult Edit(Client client, int ArtistId)
     {
+      if (ArtistId != 0)
+      {
+        _db.ArtistClient.Add(new ArtistClient() { ArtistId = ArtistId, ClientId = client.ClientId });
+      }
       _db.Entry(client).State = EntityState.Modified;
       _db.SaveChanges();
       return RedirectToAction("Index");
@@ -59,15 +69,40 @@ namespace Tattoo.Controllers
 
     public ActionResult Delete(int id)
     {
-      var thisClient = _db.Clients.FirstOrDefault(clients => clients.Id == id);
+      var thisClient = _db.Clients.FirstOrDefault(clients => clients.ClientId == id);
       return View(thisClient);
     }
 
-    [HttpPost, ActionName("Delete")]
-    public ActionResult DeleteConfirmed(int id)
+    [HttpPost]
+    public ActionResult DeleteArtist(int joinId)
     {
-      var thisClient = _db.Clients.FirstOrDefault(clients => clients.Id == id);
+      var joinEntry = _db.ArtistClient.FirstOrDefault(entry => entry.ArtistClientId == joinId);
+      _db.ArtistClient.Remove(joinEntry);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+
+    [HttpPost, ActionName("Delete")]
+    public ActionResult DeleteClient(int id)
+    {
+      var thisClient = _db.Clients.FirstOrDefault(clients => clients.ClientId == id);
       _db.Clients.Remove(thisClient);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+    public ActionResult AddArtist(int id)
+    {
+      var thisClient = _db.Clients.FirstOrDefault(clients => clients.ClientId == id);
+      ViewBag.ArtistId = new SelectList(_db.Artists, "ArtistId", "FirstName");
+      return View(thisClient);
+    }
+    [HttpPost]
+    public ActionResult AddArtist(Client client, int ArtistId)
+    {
+      if (ArtistId != 0)
+      {
+        _db.ArtistClient.Add(new ArtistClient() { ArtistId = ArtistId, ClientId = client.ClientId });
+      }
       _db.SaveChanges();
       return RedirectToAction("Index");
     }

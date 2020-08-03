@@ -37,8 +37,11 @@ namespace Tattoo.Controllers
 
     public ActionResult Details(int id)
     {
-        Artist thisArtist = _db.Artists.Include(Artists => Artists.Clients).FirstOrDefault(Artists => Artists.ArtistId == id);
-        return View(thisArtist);
+      var thisArtist = _db.Artists
+        .Include(artist => artist.Clients)
+        .ThenInclude(join => join.Client)
+        .FirstOrDefault(artist => artist.ArtistId == id);
+      return View(thisArtist);
     }
 
     public ActionResult Edit(int id)
@@ -55,17 +58,18 @@ namespace Tattoo.Controllers
       return RedirectToAction("Index");
     }
 
-    public ActionResult Delete(int id)
-    {
-      var thisArtist = _db.Artists.FirstOrDefault(Artists => Artists.ArtistId == id);
-      return View(thisArtist);
-    }
+    // public ActionResult Delete(int id)
+    // {
+    //   var thisArtist = _db.Artists.FirstOrDefault(Artists => Artists.ArtistId == id);
+    //   return View(thisArtist);
+    // }
 
-    [HttpPost, ActionName("Delete")]
-    public ActionResult DeleteConfirmed(int id)
-    {
-      var thisArtist = _db.Artists.FirstOrDefault(Artists => Artists.ArtistId == id);
-      _db.Artists.Remove(thisArtist);
-    }
+    // [HttpPost, ActionName("Delete")]
+    // public ActionResult DeleteConfirmed(int id)
+    // {
+    //   var thisArtist = _db.Artists.FirstOrDefault(Artists => Artists.ArtistId == id);
+    //   _db.Artists.Remove(thisArtist);
+    // }
+
   }
 }
