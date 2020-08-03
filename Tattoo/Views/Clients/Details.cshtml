@@ -1,0 +1,13 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Tattoo.Models.Client;
+
+<h2>Appointment Details:</h2>
+
+<h3>Name: @Html.DisplayFor(model => model.FirstName) @Html.DisplayFor(model => model.LastName)</h3>
+<h3>Services: @Html.DisplayFor(model => model.Services)</h3>
+
+<input type="button" class="btn btn-outline-info" value="Edit This Appointment!" onclick="location.href='@Url.Action("Edit", new { id = Model.Id })'" />
+<input type="button" class="btn btn-outline-info" value="Delete This Appointment!" onclick="location.href='@Url.Action("Delete", new { id = Model.Id })'" />

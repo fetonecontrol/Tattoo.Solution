@@ -1,0 +1,17 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Tattoo.Models.Artist;
+
+<h2>Are you sure you want to delete this?</h2>
+
+First Name: @Html.DisplayFor(model => model.FirstName)
+<br>
+Last Name: @Html.DisplayFor(model => model.LastName)
+@using (Html.BeginForm())
+{
+  <input type="submit" value="Delete" />
+}
+
+@Html.ActionLink("back to List", "Index")

@@ -1,0 +1,23 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Tattoo.Models.Client;
+
+<h2>Edit</h2>
+
+<h4>Edit this Client: @Html.DisplayFor(model => model.FirstName) @Html.DisplayFor(model => model.LastName)</h4>
+
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.Id)
+
+  @Html.LabelFor(model => model.FirstName)
+  @Html.EditorFor(model => model.FirstName)
+
+  @Html.LabelFor(model => model.ArtistId)
+  @Html.DropDownList("ArtistId")
+
+  <input type="submit" value="Save" />
+}
+<p>@Html.ActionLink("Back to list", "Index")</p>

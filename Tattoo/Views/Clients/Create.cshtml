@@ -1,0 +1,18 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Tattoo.Models.Client
+
+<div class="add-Client-container">
+<h2>Add a new Client</h2>
+@using (Html.BeginForm())
+{
+    <p>First Name: @Html.TextBoxFor(model => model.FirstName)</p>
+    <p>Last Name: @Html.TextBoxFor(model => model.LastName)</p>
+    <p>Services: @Html.TextBoxFor(model => model.Services)</p>
+
+    <p>Who would you like to book with? @Html.DropDownList("ArtistId")</p>
+    <input type="submit" value="Book Appointment" class="btn btn-outline-info"/>
+}
+</div>

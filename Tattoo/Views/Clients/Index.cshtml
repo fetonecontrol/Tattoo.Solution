@@ -1,0 +1,20 @@
+
+@{
+  Layout = "_Layout";
+}
+
+@using Tattoo.Models;
+@model List<Tattoo.Models.Client>;
+
+<h2>Clients</h2>
+
+@if (@Model.Count == 0)
+{
+  <h3>No Clients have been added yet!</h3>
+} 
+
+@foreach (Client client in Model)
+{
+  <li>@Html.ActionLink($"{client.FirstName}", "Details", new { id = client.Id }) | Artist for this client:<b> @client.Artist.FirstName</b></li>
+}
+<input type="button" class="btn btn-outline-info" value="Book an Appointment!" onclick="location.href='@Url.Action("Create", "Clients")'" />
