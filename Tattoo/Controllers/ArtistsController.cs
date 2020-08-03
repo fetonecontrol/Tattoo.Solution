@@ -16,10 +16,14 @@ namespace Tattoo.Controllers
       _db = db;
     }
 
-    public ActionResult Index()
+    public ActionResult Index(string firstName = "")
     {
-      List<Artist> model = _db.Artists.ToList();
-      return View(model);
+      var model = _db.Artists;
+      if (!string.IsNullOrEmpty(firstName))
+      {
+      return View(model.AsQueryable().Where(artist => artist.FirstName.Contains(firstName)).ToList());
+      }
+      return View(model.ToList());
     }
 
     public ActionResult Create()
