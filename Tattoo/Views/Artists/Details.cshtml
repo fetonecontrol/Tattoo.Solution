@@ -2,7 +2,6 @@
   Layout = "_Layout";
 }
 
-@using Tattoo.Models
 @model Tattoo.Models.Artist;
 
 
@@ -11,7 +10,7 @@
 <hr />
 
 <ul>
-@if (@Model.Clients.Count == 0)
+@if (@Model.RelationShips.Count == 0)
 {
   <p>This Artist has no current bookings</p>
 }
@@ -19,7 +18,7 @@ else
 {
   <h4>Clients that this Artist has booked:</h4>
   <ul>
-  @foreach(var join in Model.Clients)
+  @foreach(var join in Model.RelationShips)
   {
     <li>@join.Client.FirstName</li>
   }

@@ -2996,8 +2996,8 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "/Users/marielhamson/Desktop/Tattoo.Solution/Tattoo/Views/Clients/AddArtist.cshtml",
-      "TargetPath": "Views\\Clients\\AddArtist.cshtml",
+      "FilePath": "/Users/marielhamson/Desktop/Tattoo.Solution/Tattoo/Views/Clients/AddAssociation.cshtml",
+      "TargetPath": "Views\\Clients\\AddAssociation.cshtml",
       "FileKind": "mvc"
     },
     {

@@ -1,0 +1,25 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Tattoo.Models.ArtistClientStyle
+
+<h2>Add an Appointment</h2>
+
+<h4>Add or Edit an Artist or Style Preference for Client: @Html.DisplayFor(model => model.ClientId) )</h4>
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.ArtistClientStyleId)
+
+    @Html.Label("Select an Artist")
+    @Html.DropDownList("ArtistId")
+    
+    @Html.Label("Select a Style")
+    @Html.DropDownList("StyleId")
+
+
+    <input type="submit" value="Save" />
+}
+<p>@Html.ActionLink("Edit Client Info", "Create", new { id = Model.ArtistClientStyleId })</p>
+<p>@Html.ActionLink("Back to list", "Index")</p>

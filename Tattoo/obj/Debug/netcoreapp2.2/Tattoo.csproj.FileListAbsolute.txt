@@ -55,7 +55,6 @@
 /Users/marielhamson/Desktop/Tattoo.Solution/Tattoo/obj/Debug/netcoreapp2.2/Razor/Views/Artists/Details.g.cshtml.cs
 /Users/marielhamson/Desktop/Tattoo.Solution/Tattoo/obj/Debug/netcoreapp2.2/Razor/Views/Artists/Edit.g.cshtml.cs
 /Users/marielhamson/Desktop/Tattoo.Solution/Tattoo/obj/Debug/netcoreapp2.2/Razor/Views/Artists/Index.g.cshtml.cs
-/Users/marielhamson/Desktop/Tattoo.Solution/Tattoo/obj/Debug/netcoreapp2.2/Razor/Views/Clients/AddArtist.g.cshtml.cs
 /Users/marielhamson/Desktop/Tattoo.Solution/Tattoo/obj/Debug/netcoreapp2.2/Razor/Views/Clients/Create.g.cshtml.cs
 /Users/marielhamson/Desktop/Tattoo.Solution/Tattoo/obj/Debug/netcoreapp2.2/Razor/Views/Clients/Delete.g.cshtml.cs
 /Users/marielhamson/Desktop/Tattoo.Solution/Tattoo/obj/Debug/netcoreapp2.2/Razor/Views/Clients/Details.g.cshtml.cs
@@ -72,3 +71,4 @@
 /Users/marielhamson/Desktop/Tattoo.Solution/Tattoo/obj/Debug/netcoreapp2.2/Tattoo.csproj.CopyComplete
 /Users/marielhamson/Desktop/Tattoo.Solution/Tattoo/obj/Debug/netcoreapp2.2/Razor/Views/Styles/Details.g.cshtml.cs
 /Users/marielhamson/Desktop/Tattoo.Solution/Tattoo/obj/Debug/netcoreapp2.2/Razor/Views/Styles/Index.g.cshtml.cs
+/Users/marielhamson/Desktop/Tattoo.Solution/Tattoo/obj/Debug/netcoreapp2.2/Razor/Views/Clients/AddAssociation.g.cshtml.cs

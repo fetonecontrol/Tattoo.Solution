@@ -24,6 +24,19 @@ namespace Tattoo.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Styles",
+                columns: table => new
+                {
+                    StyleId = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Description = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Styles", x => x.StyleId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Clients",
                 columns: table => new
                 {
@@ -33,7 +46,7 @@ namespace Tattoo.Migrations
                     LastName = table.Column<string>(nullable: true),
                     ApptDate = table.Column<string>(nullable: true),
                     Services = table.Column<string>(nullable: true),
-                    ArtistId = table.Column<int>(nullable: false)
+                    ArtistId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -43,44 +56,56 @@ namespace Tattoo.Migrations
                         column: x => x.ArtistId,
                         principalTable: "Artists",
                         principalColumn: "ArtistId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "ArtistClient",
+                name: "ArtistClientStyle",
                 columns: table => new
                 {
-                    ArtistClientId = table.Column<int>(nullable: false)
+                    ArtistClientStyleId = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    ClientId = table.Column<int>(nullable: false),
-                    ArtistId = table.Column<int>(nullable: false)
+                    ArtistId = table.Column<int>(nullable: true),
+                    ClientId = table.Column<int>(nullable: true),
+                    StyleId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ArtistClient", x => x.ArtistClientId);
+                    table.PrimaryKey("PK_ArtistClientStyle", x => x.ArtistClientStyleId);
                     table.ForeignKey(
-                        name: "FK_ArtistClient_Artists_ArtistId",
+                        name: "FK_ArtistClientStyle_Artists_ArtistId",
                         column: x => x.ArtistId,
                         principalTable: "Artists",
                         principalColumn: "ArtistId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_ArtistClient_Clients_ClientId",
+                        name: "FK_ArtistClientStyle_Clients_ClientId",
                         column: x => x.ClientId,
                         principalTable: "Clients",
                         principalColumn: "ClientId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_ArtistClientStyle_Styles_StyleId",
+                        column: x => x.StyleId,
+                        principalTable: "Styles",
+                        principalColumn: "StyleId",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_ArtistClient_ArtistId",
-                table: "ArtistClient",
+                name: "IX_ArtistClientStyle_ArtistId",
+                table: "ArtistClientStyle",
                 column: "ArtistId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ArtistClient_ClientId",
-                table: "ArtistClient",
+                name: "IX_ArtistClientStyle_ClientId",
+                table: "ArtistClientStyle",
                 column: "ClientId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ArtistClientStyle_StyleId",
+                table: "ArtistClientStyle",
+                column: "StyleId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Clients_ArtistId",
@@ -91,10 +116,13 @@ namespace Tattoo.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "ArtistClient");
+                name: "ArtistClientStyle");
 
             migrationBuilder.DropTable(
                 name: "Clients");
+
+            migrationBuilder.DropTable(
+                name: "Styles");
 
             migrationBuilder.DropTable(
                 name: "Artists");

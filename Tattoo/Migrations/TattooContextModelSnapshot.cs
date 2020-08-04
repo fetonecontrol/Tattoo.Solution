@@ -30,29 +30,9 @@ namespace Tattoo.Migrations
 
                     b.Property<string>("Specialty");
 
-                    b.Property<int>("StyleId");
-
                     b.HasKey("ArtistId");
 
                     b.ToTable("Artists");
-                });
-
-            modelBuilder.Entity("Tattoo.Models.ArtistClient", b =>
-                {
-                    b.Property<int>("ArtistClientId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("ArtistId");
-
-                    b.Property<int>("ClientId");
-
-                    b.HasKey("ArtistClientId");
-
-                    b.HasIndex("ArtistId");
-
-                    b.HasIndex("ClientId");
-
-                    b.ToTable("ArtistClients");
                 });
 
             modelBuilder.Entity("Tattoo.Models.ArtistClientStyle", b =>
@@ -70,9 +50,11 @@ namespace Tattoo.Migrations
 
                     b.HasIndex("ArtistId");
 
+                    b.HasIndex("ClientId");
+
                     b.HasIndex("StyleId");
 
-                    b.ToTable("ArtistClientStyles");
+                    b.ToTable("ArtistClientStyle");
                 });
 
             modelBuilder.Entity("Tattoo.Models.Client", b =>
@@ -82,15 +64,13 @@ namespace Tattoo.Migrations
 
                     b.Property<string>("ApptDate");
 
-                    b.Property<int>("ArtistId");
+                    b.Property<int?>("ArtistId");
 
                     b.Property<string>("FirstName");
 
                     b.Property<string>("LastName");
 
                     b.Property<string>("Services");
-
-                    b.Property<int>("StyleId");
 
                     b.HasKey("ClientId");
 
@@ -104,10 +84,6 @@ namespace Tattoo.Migrations
                     b.Property<int>("StyleId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int?>("ArtistId");
-
-                    b.Property<int?>("ClientId");
-
                     b.Property<string>("Description");
 
                     b.HasKey("StyleId");
@@ -115,27 +91,18 @@ namespace Tattoo.Migrations
                     b.ToTable("Styles");
                 });
 
-            modelBuilder.Entity("Tattoo.Models.ArtistClient", b =>
-                {
-                    b.HasOne("Tattoo.Models.Artist", "Artist")
-                        .WithMany("Clients")
-                        .HasForeignKey("ArtistId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Tattoo.Models.Client", "Client")
-                        .WithMany("Artists")
-                        .HasForeignKey("ClientId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
             modelBuilder.Entity("Tattoo.Models.ArtistClientStyle", b =>
                 {
                     b.HasOne("Tattoo.Models.Artist", "Artist")
-                        .WithMany()
+                        .WithMany("RelationShips")
                         .HasForeignKey("ArtistId");
 
-                    b.HasOne("Tattoo.Models.Style")
-                        .WithMany("Artists")
+                    b.HasOne("Tattoo.Models.Client", "Client")
+                        .WithMany("RelationShips")
+                        .HasForeignKey("ClientId");
+
+                    b.HasOne("Tattoo.Models.Style", "Style")
+                        .WithMany("RelationShips")
                         .HasForeignKey("StyleId");
                 });
 
@@ -143,8 +110,7 @@ namespace Tattoo.Migrations
                 {
                     b.HasOne("Tattoo.Models.Artist", "Artist")
                         .WithMany()
-                        .HasForeignKey("ArtistId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("ArtistId");
                 });
 #pragma warning restore 612, 618
         }

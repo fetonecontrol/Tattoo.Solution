@@ -25,8 +25,8 @@ namespace Tattoo.Controllers
     public ActionResult Details(int id)
     {
       var thisStyle = _db.Styles
-        .Include(styles => styles.Artists)
-        .ThenInclude(join => join.Artist)
+        .Include(style => style.RelationShips).ThenInclude(join => join.Artist)
+        .Include(style => style.RelationShips).ThenInclude(join => join.Client)
         .FirstOrDefault(style => style.StyleId == id);
       return View(thisStyle);
     }
