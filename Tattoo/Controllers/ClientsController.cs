@@ -33,7 +33,7 @@ namespace Tattoo.Controllers
       _db.Clients.Add(client);
       if (ArtistId != 0)
       {
-        _db.ArtistClient.Add(new ArtistClient() { ArtistId = ArtistId, ClientId = client.ClientId });
+        _db.ArtistClients.Add(new ArtistClient() { ArtistId = ArtistId, ClientId = client.ClientId });
       }
       _db.SaveChanges();
       return RedirectToAction("Index");
@@ -60,7 +60,7 @@ namespace Tattoo.Controllers
     {
       if (ArtistId != 0)
       {
-        _db.ArtistClient.Add(new ArtistClient() { ArtistId = ArtistId, ClientId = client.ClientId });
+        _db.ArtistClients.Add(new ArtistClient() { ArtistId = ArtistId, ClientId = client.ClientId });
       }
       _db.Entry(client).State = EntityState.Modified;
       _db.SaveChanges();
@@ -76,8 +76,8 @@ namespace Tattoo.Controllers
     [HttpPost]
     public ActionResult DeleteArtist(int joinId)
     {
-      var joinEntry = _db.ArtistClient.FirstOrDefault(entry => entry.ArtistClientId == joinId);
-      _db.ArtistClient.Remove(joinEntry);
+      var joinEntry = _db.ArtistClients.FirstOrDefault(entry => entry.ArtistClientId == joinId);
+      _db.ArtistClients.Remove(joinEntry);
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
@@ -101,7 +101,7 @@ namespace Tattoo.Controllers
     {
       if (ArtistId != 0)
       {
-        _db.ArtistClient.Add(new ArtistClient() { ArtistId = ArtistId, ClientId = client.ClientId });
+        _db.ArtistClients.Add(new ArtistClient() { ArtistId = ArtistId, ClientId = client.ClientId });
       }
       _db.SaveChanges();
       return RedirectToAction("Index");

@@ -1,0 +1,15 @@
+@{
+  Layout = "_Layout";
+}
+
+@using Tattoo.Models;
+@model List<Tattoo.Models.Style>;
+
+<h2>Available Styles:</h2>
+
+
+@foreach (Style Style in Model)
+{
+  <li>@Html.ActionLink($"{Style.Description}", "Details", new { id = Style.StyleId })</li>
+}
+<input type="button" class="btn btn-outline-info" value="Sign Up as a Artist!" onclick="location.href='@Url.Action("Create", "Artists")'" />

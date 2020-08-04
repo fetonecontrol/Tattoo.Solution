@@ -6,7 +6,7 @@ namespace Tattoo.Models
   {
     public Artist()
     {
-      this.Clients = new HashSet<ArtistClient>();
+      this.Clients = new HashSet<ArtistClientStyle>();
     }
 
     public int ArtistId { get; set; }
@@ -14,6 +14,6 @@ namespace Tattoo.Models
     public string LastName { get; set; }
     public string About { get; set; }
     public string Specialty { get; set; }
-    public virtual ICollection<ArtistClient> Clients { get; set; }
+    public virtual ICollection<ArtistClientStyle> Clients { get; set; }
   }
 }
