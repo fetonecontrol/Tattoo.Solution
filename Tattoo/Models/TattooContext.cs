@@ -7,8 +7,8 @@ namespace Tattoo.Models
 
     public virtual DbSet<Artist> Artists { get; set; }
     public DbSet<Client> Clients { get; set; }
-    public DbSet<ArtistClient> ArtistClient { get; set; }
-
+    public DbSet<Style> Styles { get; set; }
+    public DbSet<ArtistClientStyle> ArtistClientStyle { get; set; }
     public TattooContext(DbContextOptions options) : base(options) { }
   }
 }

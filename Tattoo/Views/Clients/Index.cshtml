@@ -13,8 +13,8 @@
   <h3>No Clients have been added yet!</h3>
 } 
 
-@foreach (Client client in Model)
+@foreach (Client Client in Model)
 {
-  <li>@Html.ActionLink($"{client.FirstName}", "Details", new { id = client.ClientId }) </li>
+  <li>@Html.ActionLink($"{Client.FirstName}", "Details", new { id = Client.ClientId }) </li>
 }
 <input type="button" class="btn btn-outline-info" value="Book an Appointment!" onclick="location.href='@Url.Action("Create", "Clients")'" />

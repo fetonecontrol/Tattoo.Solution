@@ -21,7 +21,7 @@ namespace Tattoo.Controllers
       var model = _db.Artists;
       if (!string.IsNullOrEmpty(firstName))
       {
-      return View(model.AsQueryable().Where(artist => artist.FirstName.Contains(firstName)).ToList());
+        return View(model.AsQueryable().Where(artist => artist.FirstName.Contains(firstName)).ToList());
       }
       return View(model.ToList());
     }
@@ -42,8 +42,8 @@ namespace Tattoo.Controllers
     public ActionResult Details(int id)
     {
       var thisArtist = _db.Artists
-        .Include(artist => artist.Clients)
-        .ThenInclude(join => join.Client)
+        .Include(artist => artist.RelationShips).ThenInclude(join => join.Style)
+        .Include(artist => artist.RelationShips).ThenInclude(join => join.Client)
         .FirstOrDefault(artist => artist.ArtistId == id);
       return View(thisArtist);
     }

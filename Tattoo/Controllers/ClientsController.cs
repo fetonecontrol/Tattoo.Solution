@@ -24,16 +24,17 @@ namespace Tattoo.Controllers
     public ActionResult Create()
     {
       ViewBag.ArtistId = new SelectList(_db.Artists, "ArtistId", "FirstName");
+      ViewBag.StyleId = new SelectList(_db.Styles, "StyleId", "Description");
       return View();
     }
 
     [HttpPost]
-    public ActionResult Create(Client client, int ArtistId)
+    public ActionResult Create(Client client, int ArtistId, int StyleId)
     {
       _db.Clients.Add(client);
-      if (ArtistId != 0)
+      if (ArtistId != 0 || StyleId != 0)
       {
-        _db.ArtistClient.Add(new ArtistClient() { ArtistId = ArtistId, ClientId = client.ClientId });
+        _db.ArtistClientStyle.Add(new ArtistClientStyle() { StyleId = StyleId, ArtistId = ArtistId, ClientId = client.ClientId });
       }
       _db.SaveChanges();
       return RedirectToAction("Index");
@@ -42,8 +43,8 @@ namespace Tattoo.Controllers
     public ActionResult Details(int id)
     {
       var thisClient = _db.Clients
-        .Include(client => client.Artists)
-        .ThenInclude(join => join.Artist)
+        .Include(client => client.RelationShips).ThenInclude(join => join.Style)
+        .Include(client => client.RelationShips).ThenInclude(join => join.Artist)
         .FirstOrDefault(client => client.ClientId == id);
       return View(thisClient);
     }
@@ -52,15 +53,16 @@ namespace Tattoo.Controllers
     {
       var thisClient = _db.Clients.FirstOrDefault(clients => clients.ClientId == id);
       ViewBag.ArtistId = new SelectList(_db.Artists, "ArtistId", "FirstName");
+      ViewBag.StyleId = new SelectList(_db.Styles, "StyleId", "Description");
       return View(thisClient);
     }
 
     [HttpPost]
-    public ActionResult Edit(Client client, int ArtistId)
+    public ActionResult Edit(Client client, int ArtistId, int StyleId)
     {
       if (ArtistId != 0)
       {
-        _db.ArtistClient.Add(new ArtistClient() { ArtistId = ArtistId, ClientId = client.ClientId });
+        _db.ArtistClientStyle.Add(new ArtistClientStyle() { StyleId = StyleId, ArtistId = ArtistId, ClientId = client.ClientId });
       }
       _db.Entry(client).State = EntityState.Modified;
       _db.SaveChanges();
@@ -76,8 +78,8 @@ namespace Tattoo.Controllers
     [HttpPost]
     public ActionResult DeleteArtist(int joinId)
     {
-      var joinEntry = _db.ArtistClient.FirstOrDefault(entry => entry.ArtistClientId == joinId);
-      _db.ArtistClient.Remove(joinEntry);
+      var joinEntry = _db.ArtistClientStyle.FirstOrDefault(entry => entry.ArtistClientStyleId == joinId);
+      _db.ArtistClientStyle.Remove(joinEntry);
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
@@ -90,18 +92,19 @@ namespace Tattoo.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
-    public ActionResult AddArtist(int id)
+    public ActionResult AddAssociation(int id)
     {
       var thisClient = _db.Clients.FirstOrDefault(clients => clients.ClientId == id);
       ViewBag.ArtistId = new SelectList(_db.Artists, "ArtistId", "FirstName");
+      ViewBag.StylistId = new SelectList(_db.Styles, "StyleId", "Description");
       return View(thisClient);
     }
     [HttpPost]
-    public ActionResult AddArtist(Client client, int ArtistId)
+    public ActionResult AddAssociation(Client client, int ArtistId, int StyleId)
     {
       if (ArtistId != 0)
       {
-        _db.ArtistClient.Add(new ArtistClient() { ArtistId = ArtistId, ClientId = client.ClientId });
+        _db.ArtistClientStyle.Add(new ArtistClientStyle() { StyleId = StyleId, ArtistId = ArtistId, ClientId = client.ClientId });
       }
       _db.SaveChanges();
       return RedirectToAction("Index");
